@@ -1,0 +1,16 @@
+{% include "header.html" %}
+        <h1>Past Orders</h1>
+
+        {% if all_orders.count({"username":(session["user"]["username"])})!=0 %}
+        <table>
+          <tr><th>Date Ordered</th><th>Details</th></tr>
+          {% for o in all_orders.find({"username":(session["user"]["username"])}) %}
+            <tr><td>{{ o["orderdate"] }}</td><td>{{ o["details"] }}</td><td></tr>
+        {% endfor %}
+        </table>
+        {% else %}
+        <p> No orders have been made yet. </p>
+        {% endif %}
+
+
+{% include "footer.html" %}
